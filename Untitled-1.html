@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+      <a-box position="1 0.5 -3" rotation="0 -45 0" color="#EF2D5E"></a-box>
+      <a-entity id="info" position="0 2 -4">
+        <a-text value="Click a box to see its info!" align="center"></a-text>
+      </a-entity>
+    </a-scene>
+
+    <script>
+      // Get the info entity
+      var info = document.querySelector('#info');
+
+      // Add click event listeners to the boxes
+      var boxes = document.querySelectorAll('a-box');
+      for (var i = 0; i < boxes.length; i++) {
+        boxes[i].addEventListener('click', function() {
+          // Set the info text based on which box was clicked
+          info.querySelector('a-text').setAttribute('value', 'You clicked the ' + this.getAttribute('color') + ' box!');
+        });
+      }
+    </script>
+  </body>
+</html>
